@@ -1,0 +1,24 @@
+/* css file for style pages auth */
+
+.auth-container {
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-container form input {
+  font-size: 17px;
+  padding: 8px;
+  margin: 8px;
+} 
+
+.auth-container .error-message {
+  color: #F00;
+}
