@@ -74,7 +74,7 @@ const Auth = () => {
                   placeholder="Nazwa"
                   required={true}
                   onChange={(e)=> setName(e.target.value)}
-                  tabindex="4"  
+                  tabIndex="4"  
                 />
                 <input type="password" 
                   id="confirmPassword" 
@@ -95,7 +95,7 @@ const Auth = () => {
           </form>
           <div>
             <hr />
-            {!isSignUp ? <span className='text-muted'> Jeśli nie posiadasz konta <button className="btn" onClick={handleRegister}>ZAREJESTRUJ</button></span> : <span className='text-muted'>Posiadasz konto? <button className="btn" onClick={handleRegister}>ZALOGUJ</button></span>}
+            {!isSignUp ? <span className='text-muted'> Jeśli nie posiadasz konta <button className="btn" onClick={handleRegister} tabIndex="9">ZAREJESTRUJ</button></span> : <span className='text-muted'>Posiadasz konto? <button className="btn" onClick={handleRegister} tabIndex="9">ZALOGUJ</button></span>}
             
           </div>
           

@@ -6,6 +6,7 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
+  transition: all ease-in-out .4s;
 }
 .auth-container form {
   display: flex;
