@@ -8,8 +8,9 @@ const recipeSchema = Schema({
     required: true
   },
   user_id: {
-    type: String,
-    required: true
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: 'users'
   },
   dish_type: {
     type: String,
@@ -54,4 +55,4 @@ const recipeSchema = Schema({
   ]
 })
 
-module.exports = Recipe = mongoose.model("Recipes",recipeSchema);
+module.exports = Recipe = mongoose.model("Recipes",recipeSchema, 'recipes');

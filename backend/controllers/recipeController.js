@@ -26,7 +26,6 @@ module.exports = class Recipe{
 
   static async createRecipe(req, res, next){
     try {
-      console.error("***REQ PARAMS ******************************************")
       console.log(req.body);
       const createdRecipe = await RecipeService.createRecipe(req.body);
       res.json(createdRecipe);

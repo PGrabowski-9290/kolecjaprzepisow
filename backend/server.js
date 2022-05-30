@@ -3,13 +3,15 @@ const express = require('express');
 const cors = require('cors');
 const corsOptions = require('./configs/corsOptions');
 require('dotenv').config();
-const recipes = require('./routes/recipesRoute');
+
+const recipesRoute = require('./routes/recipesRoute');
+const authRoute = require('./routes/authRoute');
 
 const app = express();
 const port = 8000;
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({extended: true}));
 app.use(cors(corsOptions));
 
 
@@ -31,4 +33,5 @@ app.listen(port, ()=> {
   console.log(`App started at: http://localhost:${port}`);
 });
 
-app.use("/recipes", recipes);
+app.use("/recipes", recipesRoute); 
+app.use('/auth', authRoute);
