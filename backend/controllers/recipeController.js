@@ -6,7 +6,7 @@ module.exports = class Recipe{
     try {
       const recipes = await RecipeService.getAllRecipes();
       if(!recipes){
-        res.status(404).json("Brak przepis!");
+        res.status(404).json("Brak przepisow!");
       }
       res.json(recipes);
     } catch(err){
@@ -18,7 +18,10 @@ module.exports = class Recipe{
     try {
       let id = req.params.id || {};
       const recipe = await RecipeService.getRecipeById(id);
-      res.json(article);
+      if(!recipe){
+        res.status(404).json("Brak przepisu!");
+      }
+      res.json(recipe);
     } catch(err) {
       res.status(500).json({error: err});
     }

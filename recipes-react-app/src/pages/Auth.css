@@ -23,3 +23,13 @@
 .auth-container .error-message {
   color: #F00;
 }
+
+.error {
+  color: #F00;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.offscreen{
+  display: none;
+}

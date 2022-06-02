@@ -1,23 +1,31 @@
 import './Auth.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useAuth from '../hooks/useAuth'
 import Nav from '../components/Nav';
 import { useCookies } from 'react-cookie';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Auth = () => {
+  const { setAuth } = useAuth();
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
 
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
-  const [name, setName] = useState(null);
+  const [username, setUsername] = useState(null);
   const [error, setError] = useState(null);
 
+  useEffect( () => {
+    setError('')
+  }, [username, password, confirmPassword, email])
 
   let navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if ( isSignUp && (password !== confirmPassword)) {
@@ -25,17 +33,24 @@ const Auth = () => {
         return;
       }
       
-      
+      const response = await axios.post(`http://localhost:8000/auth/${isSignUp ? 'signup' : 'login'}`, {email: email, password: password, name: username, confirmPassword: confirmPassword});
+      const success  = response?.status === 200;
 
-      setCookie('AuthToken', '1231');
+      const {_id, roles, token} = response?.data?.user;
 
-
-      navigate('/');
+      if(success) {
+        setAuth({ _id, roles, token})
+        navigate(from, {replace: true});
+      }
 
     }catch (err) {
-      console.error(err);
+      console.log(err);
+
+      setError(err?.response?.data?.message);
     }
   }
+
+  
 
   const handleRegister = () => {
     setIsSignUp(!isSignUp);
@@ -73,7 +88,7 @@ const Auth = () => {
                   id="name"
                   placeholder="Nazwa"
                   required={true}
-                  onChange={(e)=> setName(e.target.value)}
+                  onChange={(e)=> setUsername(e.target.value)}
                   tabIndex="4"  
                 />
                 <input type="password" 
@@ -87,7 +102,7 @@ const Auth = () => {
               </div>}
             </div>
             <div className="row">
-              <p className="error-message">{error}</p>
+              <p className={error ? "error" : "offscreen"} >{error}</p>
             </div>
             <div className="row">              
               <input type="submit" value={!isSignUp ? 'ZALOGUJ' : 'ZAREJESTRUJ'} tabIndex="8"/>

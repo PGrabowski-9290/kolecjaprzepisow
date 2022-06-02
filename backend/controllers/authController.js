@@ -22,12 +22,15 @@ const handleRegister = async (req, res, next) => {
     const hash_pass = await bcrypt.hash(password, 10);
     const createdUser = await UserService.createUser(name, email, hash_pass);
 
-    res.json({
-      _id: createdUser._id,
-      name: createdUser.name,
-      email: createdUser.mail,
-      role: createdUser.role,
-      token: generateToken(userFound._id)
+    res.status(200).json({
+      user: {
+        _id: createdUser._id.toString(),
+        name: createdUser.name,
+        email: createdUser.mail,
+        roles: createdUser.roles,
+        token: generateToken(createdUser._id)
+      },
+      message: "Success"
     })
     
   } catch (error) {
@@ -44,31 +47,33 @@ const handleLogin = async (req, res, next) => {
       return res.status(400).json({message: 'Username and password required'});
 
     const userFound = await UserService.getUserByEmail(email);
+    if (!userFound) return res.status(401).json({message: 'Wrong username or password'});
+    console.log(userFound)
     const match = await bcrypt.compare(password, userFound.hash_pass);
-    if (match && userFound) {
+    if (match) {
+      const roles = Object.values(userFound.roles).filter(Boolean);
+      console.log(roles)
       res.status(200).json(
         {
-          _id: userFound._id.toString(),
-          name: userFound.name,
-          email: userFound.mail,
-          role: userFound.role,
-          token: generateToken(userFound._id)
+          user: {
+            _id: userFound._id.toString(),
+            name: userFound.name,
+            email: userFound.mail,
+            roles: roles,
+            token: generateToken(userFound._id)
+          }
         });
     } else {
-      res.status(401).json({message: "Unauthorized"});
+      res.status(401).json({message: "Wrong username or password"});
     } 
   }catch (error) {
     res.status(500).json({message: `Error authenticating ${error}`});
   }
 }
 
-//get logged user data
-const getUserData = async (req, res) => {
-  res.status(200).json(req.user)
-}
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d'})
 }
 
-module.exports = { handleLogin, handleRegister, getUserData }
+module.exports = { handleLogin, handleRegister }

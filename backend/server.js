@@ -24,10 +24,6 @@ app.get("/", (req,res) => {
   res.send(`<h1>NODE APLICATION BACKEND</h1>`);
 })
 
-app.post("/", (req,res) => {
-  console.log(req.body)
-  res.json({data: 'Data in the console'});
-})
 
 app.listen(port, ()=> {
   console.log(`App started at: http://localhost:${port}`);

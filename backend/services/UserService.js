@@ -25,8 +25,7 @@ const User = require('../models/userSchema');
         name: name,
         mail: sanitizedEmail,
         hash_pass: password,
-        role: "user",
-        refreshToken: [""]
+        
       }
 
       const response = await new User(newUser).save();
