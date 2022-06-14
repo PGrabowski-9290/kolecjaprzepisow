@@ -6,7 +6,7 @@ const userSchema = Schema({
     type: String,
     required: true
   },
-  mail: {
+  email: {
     type: String,
     required: true
   },
@@ -21,6 +21,9 @@ const userSchema = Schema({
       },
       Editor: Number,
       Admin: Number
+  },
+  refreshToken: {
+    type: String
   }
 
 })

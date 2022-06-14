@@ -4,7 +4,10 @@ const User = require('../models/userSchema');
       const user = await User.findById(id).select('-hash_pass');
       return user;
     } catch (error) {
-      console.error(`Nie znaleziono uzytkownika z podanym adresem ${error}`);
+      return {
+        message: "Nie znaleziono uzytkownika z podanym adresem",
+        error: error
+      }
     }
   }
 
@@ -14,7 +17,10 @@ const User = require('../models/userSchema');
       const user = await User.findOne({mail: sanitizedEmail});
       return user;
     } catch (error) {
-      console.error(`Nie znaleziono uzytkownika z podanym adresem ${error}`);
+      return {
+        message: "Nie znaleziono uzytkownika z podanym adresem",
+        error: error
+      }
     }
   }
 
@@ -23,19 +29,34 @@ const User = require('../models/userSchema');
       const sanitizedEmail = email.toLowerCase();
       const newUser = {
         name: name,
-        mail: sanitizedEmail,
+        email: sanitizedEmail,
         hash_pass: password,
-        
       }
 
       const response = await new User(newUser).save();
       return response;
     } catch (error) {
-      console.error(`Nie dodano nowego usera ${error}`);
+      return {
+        message: "Nie dodano nowego usera",
+        error: error
+      }
     }
   }
 
-  const updateUser = async(name, email, password) => {}
+  const updateUser = async (userData) => {
+    try{
+      const result = await User.updateOne({_id: userData._id}, userData)
+      return result
+    }catch(error) {
+      return {
+        message: "Błąd aktualizacji użytkownika",
+        error: error
+      }
+    }
+  }
 
+  const findByToken = async (refreshToken) => {
+    return await User.findOne({refreshToken}).exec()
+  }
 
-module.exports = {getUserByEmail, updateUser, createUser, getUserById};
+module.exports = {getUserByEmail, updateUser, createUser, getUserById, findByToken};
