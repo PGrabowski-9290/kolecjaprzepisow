@@ -17,7 +17,7 @@ const userSchema = Schema({
   roles: {
     User: {
         type: Number,
-        default: 2001
+        default: 1001
       },
       Editor: Number,
       Admin: Number
