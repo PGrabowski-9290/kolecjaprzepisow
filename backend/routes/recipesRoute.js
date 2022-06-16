@@ -10,5 +10,8 @@ router.get('/:id', RecipeController.getRecipeById);
 router.post('/',verifyJWT,verifyRoles(ROLES_LIST.User,ROLES_LIST.Editor, ROLES_LIST.Admin),  RecipeController.createRecipe);
 router.delete('/delete/:id',verifyJWT, verifyRoles(ROLES_LIST.Admin), RecipeController.deleteRecipe);
 router.put('/update/:id',verifyJWT, verifyRoles(ROLES_LIST.Admin ,ROLES_LIST.Editor), RecipeController.updateRecipe);
+// add comment to recipe
+router.post('/:id/comment',verifyJWT, verifyRoles(ROLES_LIST.User,ROLES_LIST.Editor, ROLES_LIST.Admin), RecipeController.addComment);
 
+router.delete('/:id/comment/:commentId',verifyJWT, verifyRoles(ROLES_LIST.Admin), RecipeController.deleteComment);
 module.exports = router;

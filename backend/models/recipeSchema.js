@@ -46,11 +46,8 @@ const recipeSchema = Schema({
   comments: [
     {
       author: String,
-      body: String,
-      date:{ 
-        type: Date, 
-        default: Date.now
-      }
+      text: String,
+      date: String
     }
   ]
 })

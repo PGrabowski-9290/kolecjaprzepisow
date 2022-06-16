@@ -51,7 +51,6 @@ const deleteRecipe = async (id) => {
 
 const updateRecipe = async (recipeId,data) => {
   try {
-    console.log('data', data)
     const updatedResponse = await Recipe.findOneAndUpdate({_id: recipeId}, data);
     return updatedResponse;
   } catch (err) {
