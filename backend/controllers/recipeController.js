@@ -1,5 +1,48 @@
 const RecipeService = require('../services/RecipeService');
 
+const getFilteredRecipes = async (req, res) => {
+  try {
+    const {dishType, diff, author} = req.query || null
+    const filterObj = {
+      $and: []
+    }
+    if(dishType){
+      if (dishType.length > 1){
+        var or = { $or: [] }
+
+        for(let i = 0; i < dishType.length; i++){
+          or.$or.push({dish_type: dishType[i]})
+        }
+        filterObj.$and.push(or)
+      }else{
+        filterObj.$and.push({dish_type: dishType[0]})
+      }
+    }
+
+    if(diff){
+      if (diff.length > 1){
+        var or = { $or: [] }        
+        for(let i = 0; i < diff.length; i++){ 
+          or.$or.push({'difficulty': diff[i]})
+        }
+        filterObj.$and.push(or)
+      }else{
+        filterObj.$and.push({'difficulty': diff[0]})
+      }
+    }
+
+    if(author){
+      filterObj.$and.push({author_name: author})
+    }
+
+    const recipes = await RecipeService.getFilteredRecipes(filterObj)
+
+    res.json(recipes)
+  } catch(err) {
+    console.log(err)
+    res.status(500).send(err);
+  }
+}
 
 const getAllRecipes = async (req, res) => {
   try {
@@ -100,4 +143,4 @@ const deleteComment = async (req, res) => {
   }
 }
 
-module.exports = { getAllRecipes, getRecipeById, createRecipe, deleteRecipe, updateRecipe, addComment, deleteComment }
+module.exports = { getAllRecipes, getRecipeById, getFilteredRecipes, createRecipe, deleteRecipe, updateRecipe, addComment, deleteComment }

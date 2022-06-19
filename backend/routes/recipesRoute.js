@@ -6,6 +6,7 @@ const verifyRoles = require('../middleware/verifyRoles');
 const ROLES_LIST = require('../configs/roles');
 
 router.get('/', RecipeController.getAllRecipes);
+router.get('/filter', RecipeController.getFilteredRecipes);
 router.get('/:id', RecipeController.getRecipeById);
 router.post('/',verifyJWT,verifyRoles(ROLES_LIST.User,ROLES_LIST.Editor, ROLES_LIST.Admin),  RecipeController.createRecipe);
 router.delete('/delete/:id',verifyJWT, verifyRoles(ROLES_LIST.Admin), RecipeController.deleteRecipe);

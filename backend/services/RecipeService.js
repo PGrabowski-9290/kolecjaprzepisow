@@ -9,6 +9,15 @@ const getAllRecipes = async () => {
   }
 }
 
+const getFilteredRecipes = async (filters) => {
+  try {
+    const filteredRecipes = await Recipe.find(filters);
+    return filteredRecipes
+  } catch (err) {
+    throw Error(`Nie można pobrać przepisów. ${err}`);
+  }
+}
+
 const createRecipe = async (data) => {
   try {
     const newRecipe = {
@@ -58,4 +67,4 @@ const updateRecipe = async (recipeId,data) => {
   }
 }
 
-module.exports = { getAllRecipes , createRecipe, getRecipeById, deleteRecipe, updateRecipe };
+module.exports = { getAllRecipes , createRecipe, getRecipeById, getFilteredRecipes, deleteRecipe, updateRecipe };
