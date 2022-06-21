@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import Nav from '../components/Nav'
 
 const Unauthorized = () => {
   const navigate = useNavigate();
@@ -8,7 +7,6 @@ const Unauthorized = () => {
 
   return (
     <>
-      <Nav />
       <div className="container">
         <section>
               <h1>Unauthorized</h1>

@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth'
 import Nav from '../components/Nav';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../api/axios';
 
 const Auth = () => {
   const { setAuth } = useAuth();
@@ -33,7 +33,7 @@ const Auth = () => {
         return;
       }
       
-      const response = await axios.post(`http://localhost:8000/auth/${isSignUp ? 'signup' : 'login'}`, {email: email, password: password, name: username, confirmPassword: confirmPassword});
+      const response = await axios.post(`/auth/${isSignUp ? 'signup' : 'login'}`, {email: email, password: password, name: username, confirmPassword: confirmPassword});
       const success  = response?.status === 200;
 
       const {_id, roles, token} = response?.data?.user;
@@ -58,7 +58,6 @@ const Auth = () => {
 
   return (
     <>
-      <Nav />
       <div className="container">
         <section className="auth-container">
           <form onSubmit={handleSubmit} className="auth-form">
