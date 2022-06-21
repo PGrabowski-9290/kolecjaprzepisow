@@ -33,9 +33,15 @@ const Auth = () => {
         return;
       }
       
-      const response = await axios.post(`/auth/${isSignUp ? 'signup' : 'login'}`, {email: email, password: password, name: username, confirmPassword: confirmPassword});
+      const response = await axios.post(`/auth/${isSignUp ? 'signup' : 'login'}`,
+       {email: email, password: password, name: username},
+       {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true
+       }
+      );
       const success  = response?.status === 200;
-
+      console.log(response)
       const {_id, roles, token} = response?.data?.user;
 
       if(success) {

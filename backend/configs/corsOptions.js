@@ -1,12 +1,10 @@
-const whitelist = [ 
-  'http://localhost:3000',
-];
+const allowed = require('./allowedOrigins');
 
 const corsOptions = {
   origin: (origin, callback) => {
     // console.log(origin);
     // callback(null, true)
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
+    if (allowed.indexOf(origin) !== -1 || !origin) {
       callback(null, true)
     } else {
       callback(new Error('Not allowed by CORS'));
