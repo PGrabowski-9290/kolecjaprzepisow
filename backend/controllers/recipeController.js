@@ -46,8 +46,6 @@ const getFilteredRecipes = async (req, res) => {
 
 const getAllRecipes = async (req, res) => {
   try {
-    const filters = req.body?.filters
-    console.log(filters)
     const recipes = await RecipeService.getAllRecipes();
     if(!recipes){
       res.status(404).json("Brak przepisow!");

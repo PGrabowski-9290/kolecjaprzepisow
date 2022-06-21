@@ -12,7 +12,7 @@ const RecipeDetails = () => {
   return (
     <div className='container'>
       <div className='recipe-details'>
-        
+        {id}
       </div>
     </div>
   )
