@@ -71,6 +71,16 @@ input:hover, input:focus {
   cursor: pointer;
 }
 
+.btn {
+  padding: 15px 10px;
+  background: none;
+  border-radius: 10px;
+  outline: none;
+}
+
+.btn-add {
+  border: 1px solid #767676;
+}
 .card {
   border-radius: 15px;
   border: 1px solid #767676;
@@ -93,4 +103,22 @@ input:hover, input:focus {
 .recipe-filter {
   display: flex;
   flex-direction: row;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  padding: 0 20px;
+}
+.filter-section > header {
+  font-size: 1.11em;
+  font-weight: bold;
+}
+
+.filter-section > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }

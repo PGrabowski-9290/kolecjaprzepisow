@@ -8,6 +8,7 @@ export const Recipes = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState(null);
+  
 
   const navigate = useNavigate();
   const getData = async () => {
@@ -40,7 +41,9 @@ export const Recipes = () => {
       <div className="container">
         <div className='recipe-menu card'>
           <Filter setFilter={setFilter} />
-          <button className='btn btn-add' onClick={() => {addRecipe()}}>Dodaj przepis</button>
+          <div>
+            { <button className='btn btn-add' onClick={() => {addRecipe()}}>Dodaj</button>}
+          </div>
         </div>
         {loading ? 
           <h1>Loading...</h1> 

@@ -87,11 +87,15 @@ const Filter = ({ setFilter }) => {
         <header>Autor</header>
         <div>
           <label>
-            <input type="text" onChange={(e) => {setAuthor(e.target.value)}}/>
+            <input type="text"
+              placeholder='Autor..'
+              onChange={(e) => {setAuthor(e.target.value)}}/>
           </label>
         </div>
       </section>
-      <button onClick={handleSearch}>Szukaj</button>
+      <section className='filter-section'>
+        <button className='btn btn-add' onClick={handleSearch}>Szukaj</button>
+      </section>
     </div>
   )
 }
