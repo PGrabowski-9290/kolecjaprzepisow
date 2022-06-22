@@ -51,11 +51,18 @@ export const Recipes = () => {
           <div className='recipe-list card'>
            { recipes?.map(recipe => {
               return (
-              <div key={recipe._id} className='recipe-list-item' onClick={() => selectRecipe(recipe._id)}>
-                <div className='image'>
+              <div key={recipe._id} className='recipe-list-item' >
+                <div className='header'>
                   <img src={recipe.photo} alt='Recipe small img' />
                 </div>
-                <button>Szczegóły</button>
+                <div className='body'>
+                  <h4>{recipe.title}</h4>
+                  <span className='author'>{recipe.author_name}</span>
+                </div>
+                <div className='footer'>
+                  <button className='btn btn-details' onClick={() => selectRecipe(recipe._id)}>Szczegóły</button>
+                </div>
+                
               </div>)
             })}
           </div>

@@ -115,7 +115,7 @@ const Auth = () => {
           </form>
           <div>
             <hr />
-            {!isSignUp ? <span className='text-muted'> Jeśli nie posiadasz konta <button className="btn" onClick={handleRegister} tabIndex="9">ZAREJESTRUJ</button></span> : <span className='text-muted'>Posiadasz konto? <button className="btn" onClick={handleRegister} tabIndex="9">ZALOGUJ</button></span>}
+            {!isSignUp ? <span className='text-muted'> Jeśli nie posiadasz konta <button className="btn-link" onClick={handleRegister} tabIndex="9">ZAREJESTRUJ</button></span> : <span className='text-muted'>Posiadasz konto? <button className="btn-link" onClick={handleRegister} tabIndex="9">ZALOGUJ</button></span>}
             
           </div>
           

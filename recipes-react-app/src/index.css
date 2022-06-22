@@ -12,6 +12,7 @@ a {
 }
 .page {
   width: 100%;
+  min-width: 810px;
   display: flex;
   justify-content: center;
 }
@@ -50,10 +51,16 @@ h1 {
 h2 {
   text-transform: uppercase;
   text-align: center;
-  font-weight:bold;
+  font-weight: 300;
   font-size: 2em;
 }
 
+h4 {
+  text-transform: uppercase;
+  
+  font-weight:bold;
+  font-size: 1.2em;
+}
 input {
   font-size: 15px;
   padding: 8px;
@@ -63,23 +70,49 @@ input {
   border-radius: 2px;
 }
 
-input:hover, input:focus {
+input:hover, input:focus, .btn:hover {
   outline: 1px solid #a0bfec;
+}
+
+.back {
+  position: absolute;
+  top: 90px;
+  left: 20px;
 }
 
 .btn, input[type="submit"], input[type="button"], input[type="reset"] {
   cursor: pointer;
 }
+.btn-link {
+  padding: 0;
+  margin: 0;
+  border: none;
+  text-decoration: underline;
+  background: none;
+  cursor: pointer;
+}
+
+.btn-link:hover {
+  color:#767676
+} 
 
 .btn {
-  padding: 15px 10px;
-  background: none;
-  border-radius: 10px;
-  outline: none;
+  padding: 8px;
+  margin: 8px;
+  border-radius: 2px;
 }
 
 .btn-add {
-  border: 1px solid #767676;
+  border: 1px solid #E3E5E8;
+  background-color: #e3e5e8;
+}
+
+.btn-details {
+  background: none;
+  border: 1px solid #475469;
+}
+.btn-details:hover {
+  outline: 1px solid #666769;
 }
 .card {
   border-radius: 15px;
@@ -120,5 +153,56 @@ input:hover, input:focus {
 .filter-section > div {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+}
+
+.filter-section > div label {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+/* RECIPE LIST */
+
+.recipe-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.recipe-list .recipe-list-item {
+  max-height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 0px 5px 2px 5px;
+  border-bottom: 1px solid #b1b3b5;
+}
+
+.recipe-list .recipe-list-item:hover {
+  border-bottom: 1px solid #e3e5e8;
+}
+
+.recipe-list-item > .header {
+  width: 200px;
+}
+
+.recipe-list-item > .header img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.recipe-list-item > .body {
+  flex-grow: 2;
+  margin: 2px 4px 0 4px;
+}
+
+.recipe-list-item > .footer {
+  display: flex;
   flex-direction: column;
 }
