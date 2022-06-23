@@ -11,8 +11,8 @@ import RecipeDetails from './pages/RecipeDetails';
 import RecipesAdd from './pages/RecipesAdd';
 
 const ROLES = {
-  'User': 2001,
-  'Admin': 5150
+  'User': 1001,
+  'Admin': 5001
 }
 
 const App =() => {
@@ -26,7 +26,7 @@ const App =() => {
             
           </Route>
           <Route path="recipes/details" element={<RecipeDetails />}/>
-          <Route element={<RequireAuth roles={[ROLES.User, ROLES.Admin]} /> } >
+          <Route element={<RequireAuth allowedRoles={[ROLES.User, ROLES.Admin]} /> } >
             <Route path='recipes/add' element={<RecipesAdd />} />
           </Route>
 

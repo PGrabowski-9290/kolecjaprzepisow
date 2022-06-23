@@ -8,8 +8,6 @@ import axios from '../api/axios';
 
 const Auth = () => {
   const { setAuth } = useAuth();
-  const [cookies, setCookie, removeCookie] = useCookies(['user']);
-
   const [isSignUp, setIsSignUp] = useState(false);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -42,10 +40,10 @@ const Auth = () => {
       );
       const success  = response?.status === 200;
       console.log(response)
-      const {_id, roles, token} = response?.data?.user;
+      const {_id, roles, accessToken, name} = response?.data?.user;
 
       if(success) {
-        setAuth({ _id, roles, token})
+        setAuth({ _id, roles, accessToken, name})
         navigate(from, {replace: true});
       }
 

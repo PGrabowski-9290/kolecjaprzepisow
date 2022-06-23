@@ -10,6 +10,9 @@ body {
 a {
   text-decoration: none;
 }
+b {
+  font-weight: bold;
+}
 .page {
   width: 100%;
   min-width: 810px;
@@ -30,6 +33,10 @@ a {
   color: rgb(66, 66, 66);
 }
 
+.text-small {
+  font-size: 13px !important;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -38,7 +45,6 @@ a {
 .col {
   display: flex;
   flex-direction: column;
-  padding:30px;
 }
 
 h1 {
@@ -51,8 +57,15 @@ h1 {
 h2 {
   text-transform: uppercase;
   text-align: center;
-  font-weight: 300;
+  font-weight: 500;
   font-size: 2em;
+}
+
+h3 {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5em;
 }
 
 h4 {
@@ -102,6 +115,11 @@ input:hover, input:focus, .btn:hover {
   border-radius: 2px;
 }
 
+.btn.small {
+  padding: 5px!important;
+  margin: 6px!important;
+}
+
 .btn-add {
   border: 1px solid #E3E5E8;
   background-color: #e3e5e8;
@@ -111,9 +129,23 @@ input:hover, input:focus, .btn:hover {
   background: none;
   border: 1px solid #475469;
 }
+
 .btn-details:hover {
   outline: 1px solid #666769;
 }
+
+.btn-expand {
+  transform: rotate(0deg);
+  font-size: 20px;
+  line-height: 14px;
+  font-weight: 600;
+}
+
+.btn-expand.active {
+  transform: rotate(180deg);
+}
+
+
 .card {
   border-radius: 15px;
   border: 1px solid #767676;
@@ -205,4 +237,75 @@ input:hover, input:focus, .btn:hover {
 .recipe-list-item > .footer {
   display: flex;
   flex-direction: column;
+}
+
+/* RECIPE DETAIL */
+.recipe-details {
+  width: 80%;
+  margin: 40px 0px 10px;
+}
+
+.recipe-comments .controls {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  border-bottom: 1px solid #b1b3b5;
+  margin-bottom: 15px;
+}
+.recipe-comments .controls .form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  flex-grow: 6;
+}
+.recipe-comments .controls form{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  flex-grow: 2;
+}
+.recipe-comments .controls input[type='text'].expand, .recipe-comments .controls input[type='text']:focus  {
+  width: 80%;
+}
+
+.recipe-comments {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-section {
+  display: none;
+}
+
+.comment-section.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.comment-section .comment {
+  width: 90%;
+  border: 1px solid #b1b3b5;
+  margin-top: 7px;
+  padding: 2px 3px 3px 3px ;
+}
+
+.comment-section .comment .header {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.recipe-details .image {
+  width: 100%;
+}
+
+.recipe-details .image img {
+  width: 100%;
+}
+
+.recipe-details ul {
+  list-style-type: disc;
 }

@@ -2,13 +2,14 @@ import { useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/axios';
 import Filter from '../components/Filter'
+import useAuth from '../hooks/useAuth'
 
 export const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState(null);
-  
+  const { auth } = useAuth();
 
   const navigate = useNavigate();
   const getData = async () => {
@@ -19,6 +20,7 @@ export const Recipes = () => {
       setRecipes(response.data)
     }
   }
+
   useEffect( () => {
     getData()
   }, [loading]);
@@ -42,7 +44,7 @@ export const Recipes = () => {
         <div className='recipe-menu card'>
           <Filter setFilter={setFilter} />
           <div>
-            { <button className='btn btn-add' onClick={() => {addRecipe()}}>Dodaj</button>}
+            {auth?.roles?.includes(1001) && <button className='btn btn-add' onClick={() => {addRecipe()}}>Dodaj</button>}
           </div>
         </div>
         {loading ? 

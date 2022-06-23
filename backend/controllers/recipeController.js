@@ -60,7 +60,6 @@ const getRecipeById = async (req, res) => {
   try {
     let id = req.params.id || "";
     const recipe = await RecipeService.getRecipeById(id);
-    console.log(recipe);
     if(!recipe){
       res.status(404).json("Brak przepisu!");
     }
@@ -72,7 +71,6 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   try {
-    console.log(req.body);
     const createdRecipe = await RecipeService.createRecipe(req.body);
     res.json(createdRecipe);
   } catch(err) {
@@ -105,7 +103,7 @@ const updateRecipe = async (req, res) => {
 const addComment = async (req, res) => {
   try {
     const {author,text} = req.body;
-
+    console.log(req)
     let recipeId = req.params.id;
     const comment = {
       author: author,
