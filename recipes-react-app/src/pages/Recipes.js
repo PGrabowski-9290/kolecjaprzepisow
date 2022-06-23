@@ -21,11 +21,26 @@ export const Recipes = () => {
     }
   }
 
+  const getFiltered = async () => {
+    const response = await axios.get(`/recipes/filter?${filter}`);
+    const success = response?.status === 200;
+    if (success) {
+      setLoading(false);
+      setRecipes(response.data)
+    }
+  }
+
   useEffect( () => {
     getData()
   }, [loading]);
 
   useEffect( () => {
+    if (filter){
+      getFiltered()
+    }else {
+      getData()
+      console.log("all")
+    }
     console.log(filter)
   }, [filter])
 

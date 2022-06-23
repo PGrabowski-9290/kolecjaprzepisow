@@ -11,10 +11,11 @@ const User = require('../models/userSchema');
     }
   }
 
-  const getUserByEmail = async(email) =>{
+  const getUserByEmail = async (email) =>{
     try {
       const sanitizedEmail = email.toLowerCase();
-      const user = await User.findOne({mail: sanitizedEmail});
+      console.log(`userService email: `, sanitizedEmail)
+      const user = await User.findOne({'email': sanitizedEmail});
       return user;
     } catch (error) {
       return {

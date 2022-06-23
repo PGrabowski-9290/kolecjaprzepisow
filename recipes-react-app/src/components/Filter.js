@@ -51,15 +51,15 @@ const Filter = ({ setFilter }) => {
         </header>
         <div>
           <label>
-            <input type='checkbox' onChange={(e) => {handleType(e, 1)}}/>
+            <input type='checkbox' onChange={(e) => {handleType(e, 'Obiad')}}/>
             <span>Obiady</span>
           </label>
           <label>
-            <input type='checkbox' onChange={(e) => {handleType(e, 2)}}/>
+            <input type='checkbox' onChange={(e) => {handleType(e, 'Zupa')}}/>
             <span>Zupy</span>
           </label>
           <label>
-            <input type='checkbox' onChange={(e) => {handleType(e, 3)}}/>
+            <input type='checkbox' onChange={(e) => {handleType(e, "Deser")}}/>
             <span>Desery</span>
           </label>
         </div>

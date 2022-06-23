@@ -11,6 +11,7 @@ const handleRegister = async (req, res) => {
   }
   
   const duplicateUser = await UserService.getUserByEmail(email);
+  console.log(duplicateUser, email)
   if (duplicateUser)
     return res.status(400).json({message: "Email already in use"});
 
@@ -99,7 +100,7 @@ const handleLogout = async (req,res) => {
   const foundUser = UserService.findByToken(refreshToken)
 
   if(!foundUser) {
-    res.clearCookie('jwt', {httpOnly: true, secure: true, sameSite: 'None'})
+    res.clearCookie('jwt',{httpOnly: true, secure: true, sameSite: 'None'})
     return res.status(204).json({message: 'Success'})
   }
 
@@ -107,7 +108,7 @@ const handleLogout = async (req,res) => {
   const result = UserService.updateUser(foundUser)
   console.log(result)
 
-  res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
+  res.clearCookie('jwt', 'none', { httpOnly: true, sameSite: 'None', secure: true });
   res.status(204).json({message: "Logged Out"})
 }
 

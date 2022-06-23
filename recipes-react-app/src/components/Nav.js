@@ -2,22 +2,22 @@ import './Nav.css';
 import useAuth from '../hooks/useAuth'
 import {useCookies} from 'react-cookie';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import axios from '../api/axios';
 
 const Nav = () => {
   const { auth, setAuth } = useAuth();
   const [cookies, setCookie, removeCookie] = useCookies(['user']);
   let navigation = useNavigate();
-  let isLogged = false;
   const authToken = auth._id;
 
-  const logout = () => {
-    console.log('logout');
-    removeCookie('AuthToken', cookies.AuthToken);
+  const logout = async () => {
+    console.log('logout'); 
+    const response = await axios.get('/auth/logout')
+    setAuth({})
+    console.log(cookies)
     navigation('/');
-    window.location.reload();
   }
 
-  const menuClick = () => {}
 
   return (
     <nav className="nav">
@@ -25,9 +25,6 @@ const Nav = () => {
       <div className="menu">
         <span className="menu-item">{authToken ? <a onClick={logout} href="#">Wyloguj</a> : <a href="/auth">Zaloguj</a>}</span>
         <span className="menu-item"><Link to="/recipes">Przepisy</Link></span>
-        { auth?.role === 2001 && 
-        <span className="menu-item"><Link to="/moderate">Moderate</Link></span> 
-        }
       </div>
     </nav>
   )

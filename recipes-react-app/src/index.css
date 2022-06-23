@@ -17,7 +17,7 @@ b {
 
 .page {
   width: 100%;
-  min-width: 810px;
+  min-width: 880px;
   display: flex;
   justify-content: center;
 }
