@@ -71,6 +71,7 @@ const getRecipeById = async (req, res) => {
 
 const createRecipe = async (req, res) => {
   try {
+    console.log(req.body)
     const createdRecipe = await RecipeService.createRecipe(req.body);
     res.json(createdRecipe);
   } catch(err) {

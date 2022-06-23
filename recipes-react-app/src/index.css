@@ -10,9 +10,11 @@ body {
 a {
   text-decoration: none;
 }
+
 b {
   font-weight: bold;
 }
+
 .page {
   width: 100%;
   min-width: 810px;
@@ -74,7 +76,7 @@ h4 {
   font-weight:bold;
   font-size: 1.2em;
 }
-input {
+input, .form-control {
   font-size: 15px;
   padding: 8px;
   margin: 8px;
@@ -83,7 +85,12 @@ input {
   border-radius: 2px;
 }
 
-input:hover, input:focus, .btn:hover {
+textarea.form-control {
+  max-width: 100%;
+  resize: vertical;
+}
+
+input:hover, input:focus, .btn:hover, .form-control:hover {
   outline: 1px solid #a0bfec;
 }
 
@@ -308,4 +315,17 @@ input:hover, input:focus, .btn:hover {
 
 .recipe-details ul {
   list-style-type: disc;
+}
+
+.add-recipe {
+  width: 80%;
+}
+
+.ingredients div{
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.ingredients select.form-control {
+  width: 96px;
 }

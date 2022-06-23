@@ -28,6 +28,6 @@
   color: #666769;
 }
 
-.menu-item a:active, .menu-item a:focus, .menu-item a:hover  {
+.menu-item a:focus, .menu-item a:hover  {
   color: #b1b3b5;
 }
